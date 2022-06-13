@@ -33,10 +33,24 @@ class listingServices
         return $prepared->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function addListingImages($image1, $image2, $image3, $image4, $listing)
+    public function addListingImages($image1, $image2, $image3, $image4, $type1, $type2, $type3, $type4, $listing)
     {
-        $prepared = $this->connect->prepare("CALL add_listing_images(?, ?, ?, ?, ?)");
-        return $prepared->execute(array($image1, $image2, $image3, $image4, $listing));
+        $prepared = $this->connect->prepare("CALL add_listing_images(?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        return $prepared->execute(array($image1, $image2, $image3, $image4, $type1, $type2, $type3, $type4, $listing));
+    }
+
+    public function getAllListings()
+    {
+        $prepared = $this->connect->query("CALL get_all_listings()");
+        $rawData = $prepared->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($rawData as $reg)
+        {
+            for ($i=0; $i<count($reg); $i++)
+            {
+                $reg['pic'.strval($i)] = "data:".$reg['pic'.strval($i).'type'].";base64,".base64_encode(stripslashes($reg['pic'.strval($i)]));
+            }
+        }
+        return $rawData;
     }
 
 }

@@ -27,7 +27,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST")
                 $img4 = new blobImage($pic4['tmp_name']);
 //                if ($img1->getType() != 'image/jpeg')
 //                    echo "error filetype";
-                if ($ls->addListingImages($img1->getBinaryContent(), $img2->getBinaryContent(), $img3->getBinaryContent(), $img4->getBinaryContent(), $listingId) == TRUE)
+                if ($ls->addListingImages($img1->getBinaryContent(), $img2->getBinaryContent(), $img3->getBinaryContent(), $img4->getBinaryContent(),
+                        $img1->getType(), $img2->getType(), $img3->getType(), $img4->getType(), $listingId) == TRUE)
                     echo "true";
                 else
                 {
@@ -47,5 +48,16 @@ if ($_SERVER['REQUEST_METHOD'] == "POST")
     else if ($operation == 'delete_listing')
     {
         echo json_encode($ls->deleteListing(intval($id)));
+    }
+}
+else if ($_SERVER['REQUEST_METHOD'] == "GET")
+{
+    extract($_GET);
+    $ls = new listingServices();
+
+    if ($operation == "posts")
+    {
+        echo "HEYY";
+        echo json_encode($ls->getAllListings());
     }
 }
