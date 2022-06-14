@@ -43,15 +43,17 @@ class listingServices
     {
         $prepared = $this->connect->query("CALL get_all_listings()");
         $rawData = $prepared->fetchAll(PDO::FETCH_ASSOC);
+        $newData = array();
         foreach ($rawData as $reg)
         {
             $reg['pic1'] = "data:".$reg['pic1type'].";base64,".base64_encode(stripslashes($reg['pic1']));
             $reg['pic2'] = "data:".$reg['pic2type'].";base64,".base64_encode(stripslashes($reg['pic2']));
             $reg['pic3'] = "data:".$reg['pic3type'].";base64,".base64_encode(stripslashes($reg['pic3']));
             $reg['pic4'] = "data:".$reg['pic4type'].";base64,".base64_encode(stripslashes($reg['pic4']));
+            array_push($newData, array('title'=>$reg['name'],'desc'=>$reg['description'], 'price'=>$reg['targetPrice'], 'collected'=>$reg['collectedFunds'], 'expires'=>$reg['dateEnd'],
+                $reg['pic1'],$reg['pic2'],$reg['pic3'],$reg['pic4']));
         }
-        echo json_encode($rawData);
-        return $rawData;
+        return $newData;
     }
 
 }
