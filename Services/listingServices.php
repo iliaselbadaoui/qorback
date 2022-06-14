@@ -46,11 +46,11 @@ class listingServices
         foreach ($rawData as $reg)
         {
             $reg['pic1'] = "data:".$reg['pic1type'].";base64,".base64_encode(stripslashes($reg['pic1']));
-            echo $reg['pic1'];
             $reg['pic2'] = "data:".$reg['pic2type'].";base64,".base64_encode(stripslashes($reg['pic2']));
             $reg['pic3'] = "data:".$reg['pic3type'].";base64,".base64_encode(stripslashes($reg['pic3']));
             $reg['pic4'] = "data:".$reg['pic4type'].";base64,".base64_encode(stripslashes($reg['pic4']));
         }
+        echo json_encode($rawData);
         return $rawData;
     }
 
