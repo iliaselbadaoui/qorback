@@ -57,7 +57,6 @@ else if ($_SERVER['REQUEST_METHOD'] == "GET")
 
     if ($operation == "posts")
     {
-        echo "HEYY";
         echo json_encode($ls->getAllListings());
     }
 }
