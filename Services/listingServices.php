@@ -68,7 +68,14 @@ class listingServices
     {
         $prepared = $this->connect->prepare("CALL get_user_listings(?)");
         $prepared->execute(array($id));
-        return $prepared->fetchAll(PDO::FETCH_ASSOC);
+        $rows = $prepared->fetchAll(PDO::FETCH_ASSOC);
+        $newData = array();
+        foreach ($rows as $row)
+        {
+            $miniature = "data:".$row['type'].";base64,".base64_encode(stripslashes($row['miniature']));
+            array_push($newData, array("id"=> $row["id"], "title"=>$row['title'], "miniature"=>$miniature));
+        }
+        return $newData;
     }
 
 }
