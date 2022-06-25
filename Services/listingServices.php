@@ -64,4 +64,11 @@ class listingServices
         return $prepared->execute(array($user, $listing));
     }
 
+    public function getUserListings($id)
+    {
+        $prepared = $this->connect->prepare("CALL get_user_listings(?)");
+        $prepared->execute(array($id));
+        return $prepared->fetch(PDO::FETCH_ASSOC);
+    }
+
 }
