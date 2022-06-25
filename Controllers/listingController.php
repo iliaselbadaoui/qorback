@@ -61,6 +61,6 @@ else if ($_SERVER['REQUEST_METHOD'] == "GET")
     }
     else if ($operation == "user_posts")
     {
-        echo json_encode($ls->getUserListings());
+        echo json_encode($ls->getUserListings($id));
     }
 }
