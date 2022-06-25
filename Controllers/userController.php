@@ -11,12 +11,12 @@ include_once root."/Services/userServices.php";
         extract($_GET);
         $userServices = new userServices();
 
-        if ($operation == "test_request")
-            echo json_encode($userServices->getUsers());
-        else if ($operation == "login")
+        if ($operation == "login")
             echo json_encode($userServices->login($email, $password));
         else if ($operation == "user_photo")
             echo json_encode(array('image'=>$userServices->getUserPhoto($id)));
+        else if ($operation == "user_numbers")
+            echo json_encode($userServices->getUserNumbers($id));
     }
     else if ($_SERVER["REQUEST_METHOD"] == 'POST')
     {

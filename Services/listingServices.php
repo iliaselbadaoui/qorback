@@ -58,4 +58,10 @@ class listingServices
         return $newData;
     }
 
+    public function create_ticket($user, $listing)
+    {
+        $prepared = $this->connect->prepare("CALL create_ticket(?, ?)");
+        return $prepared->execute(array($user, $listing));
+    }
+
 }

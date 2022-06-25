@@ -63,4 +63,11 @@ class userServices
         $prepared->bindParam(':mime', $mime, PDO::PARAM_STR, 100);
         return $prepared->execute();
     }
+
+    public function getUserNumbers($id)
+    {
+        $prepared = $this->connect->prepare("CALL get_user_numbers(?)");
+        $prepared->execute(array($id));
+        return $prepared->fetch(PDO::FETCH_ASSOC);
+    }
 }
