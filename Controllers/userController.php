@@ -40,6 +40,6 @@ include_once root."/Services/userServices.php";
         }
         else if ($operation == 'update_user')
         {
-            echo json_encode($userServices->updateUser($id, $email, $phone))
+            echo json_encode($userServices->updateUser($id, $email, $phone));
         }
     }
