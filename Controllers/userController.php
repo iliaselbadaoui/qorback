@@ -34,14 +34,12 @@ include_once root."/Services/userServices.php";
         {
             $blob = new blobImage($_FILES['photo']['tmp_name']);
             if ($userServices->getUserPhoto($id) == "data:;base64,")
-            {
                 echo json_encode($userServices->addUserPhoto($id, $blob->getType(), $blob->getBinaryContent()));
-                echo "if";
-            }
             else
-            {
                 echo json_encode($userServices->updateUserPhoto($id, $blob->getType(), $blob->getBinaryContent()));
-                echo "else";
-            }
+        }
+        else if ($operation == 'update_user')
+        {
+            echo json_encode($userServices->updateUser($id, $email, $phone))
         }
     }

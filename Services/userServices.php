@@ -55,6 +55,11 @@ class userServices
         $prepared->bindParam(':mime', $mime, PDO::PARAM_STR, 100);
         return $prepared->execute();
     }
+    public function updateUser($id, $email, $phone)
+    {
+        $prepared = $this->connect->prepare("CALL update_user(?, ?, ?)");
+        return $prepared->execute($id, $email, $phone);
+    }
     public function updateUserPhoto($id, $mime, $photo)
     {
         $prepared = $this->connect->prepare("CALL update_user_photo(:id, :photo, :mime)");
