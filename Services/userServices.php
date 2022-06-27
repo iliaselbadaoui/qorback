@@ -58,7 +58,7 @@ class userServices
     public function updateUser($id, $email, $phone)
     {
         $prepared = $this->connect->prepare("CALL update_user(?, ?, ?)");
-        return $prepared->execute($id, $email, $phone);
+        return $prepared->execute(array($id, $email, $phone));
     }
     public function updateUserPhoto($id, $mime, $photo)
     {
