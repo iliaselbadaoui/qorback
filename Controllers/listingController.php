@@ -53,10 +53,13 @@ if ($_SERVER['REQUEST_METHOD'] == "POST")
     }
     else if ($operation == "create_ticket")
     {
-        if (intval($us->getUserById($user)['solde']) > 0)
+        if (intval($us->getUserById($user)['solde']) >= 10)
         {
             if ($ls->createTicket($user, $listing) == TRUE)
+            {
+                $us->updateUserSolde($user);
                 echo json_encode($us->getUserById($user));
+            }
             else
                 echo "Wrong";
         }

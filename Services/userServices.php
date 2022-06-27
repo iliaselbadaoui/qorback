@@ -80,4 +80,10 @@ class userServices
         $prepared->execute(array($id));
         return $prepared->fetch(PDO::FETCH_ASSOC);
     }
+
+    public function updateUserSolde($id)
+    {
+        $prepared = $this->connect->prepare("CALL update_user_solde(?)");
+        return $prepared->execute(array($id));
+    }
 }
