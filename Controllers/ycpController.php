@@ -1,6 +1,7 @@
 <?php
 
-require_once 'vendor/autoload.php';
+include_once "../__root__.php";
+include_once root.'/vendor/youcanpay/payment-sdk/src/YouCanPay.php';
 
 $youCanPay = YouCanPay::instance()->useKeys('pri_572164be-be2c-42d7-928a-66fc6680', 'pub_f9a7b5c1-2fc9-43b3-be3e-ee96b140');
 
