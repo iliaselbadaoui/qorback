@@ -54,9 +54,14 @@ if ($_SERVER['REQUEST_METHOD'] == "POST")
     else if ($operation == "create_ticket")
     {
         if (intval($us->getUserById($user)['solde']) > 0)
-            echo json_encode($ls->createTicket($user, $listing));
+        {
+            if ($ls->createTicket($user, $listing) == TRUE)
+                echo json_encode($us->getUserById($user));
+            else
+                echo "Wrong";
+        }
         else
-            echo "NO";
+            echo "Solde";
     }
 
 }
