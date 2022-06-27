@@ -2,9 +2,20 @@
 
 use YouCan\Pay\YouCanPay;
 
-$youCanPay = YouCanPay::instance()->useKeys('pri_572164be-be2c-42d7-928a-66fc6680', 'pub_f9a7b5c1-2fc9-43b3-be3e-ee96b140');
+$youCanPay = YouCanPay::instance()->useKeys('pri_key', 'pub_key');
 
-// generate a token for a new payment
-$token = $youCanPay->token->create("order-id", "2000", "USD", "123.123.123.123");
+$transaction = $youCanPay->transaction->get("transaction-id");
 
-echo $token->getId();
+if (is_null($transaction)) {
+    echo "not_valid";
+}
+
+// fetch your order
+$order = Order::first();
+
+// the amount is in smallest currency unit
+$amount = $transaction->getBaseAmount() ?? $transaction->getAmount();
+
+if (bccomp($amount, $order->getAmount()) !== 0) {
+// the YouCan Pay transaction amount is different than the order amount
+}
