@@ -6,11 +6,13 @@ include_once root."/Classes/Connection.php";
 include_once root."/Classes/Listing.php";
 include_once root."/Classes/blobImage.php";
 include_once root."/Services/listingServices.php";
+include_once root."/Services/userServices.php";
 
 if ($_SERVER['REQUEST_METHOD'] == "POST")
 {
     extract($_POST);
     $ls = new listingServices();
+    $us = new userServices();
 
     if ($operation == "add_listing")
     {
@@ -49,6 +51,14 @@ if ($_SERVER['REQUEST_METHOD'] == "POST")
     {
         echo json_encode($ls->deleteListing(intval($id)));
     }
+    else if ($operation == "create_ticket")
+    {
+        if (intval($us->getUserById($user)['solde']) > 0)
+            echo "YES";
+        else
+            echo "NO";
+    }
+
 }
 else if ($_SERVER['REQUEST_METHOD'] == "GET")
 {

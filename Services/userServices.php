@@ -42,7 +42,8 @@ class userServices
     public  function getUserById($id)
     {
         $prepared = $this->connect->prepare("CALL get_user_by_id(?)");
-        return $prepared->execute(array($id));
+        $prepared->execute(array($id));
+        return $prepared->fetch(PDO::FETCH_ASSOC);
     }
     public  function  getEmail($email)
     {
