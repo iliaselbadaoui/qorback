@@ -58,12 +58,6 @@ class listingServices
         return $newData;
     }
 
-    public function create_ticket($user, $listing)
-    {
-        $prepared = $this->connect->prepare("CALL create_ticket(?, ?)");
-        return $prepared->execute(array($user, $listing));
-    }
-
     public function getUserListings($id)
     {
         $prepared = $this->connect->prepare("CALL get_user_listings(?)");
@@ -78,7 +72,7 @@ class listingServices
         return $newData;
     }
 
-    public function createListing($user, $listing)
+    public function createTicket($user, $listing)
     {
         $prepared = $this->connect->prepare("CALL create_ticket(?, ?)");
         return $prepared->execute(array($user, $listing));
