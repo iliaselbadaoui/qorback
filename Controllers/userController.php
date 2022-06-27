@@ -17,6 +17,8 @@ include_once root."/Services/userServices.php";
             echo json_encode(array('image'=>$userServices->getUserPhoto($id)));
         else if ($operation == "user_numbers")
             echo json_encode($userServices->getUserNumbers($id));
+        else if ($operation == "user-id")
+            echo json_encode($userServices->getUserById($id));
     }
     else if ($_SERVER["REQUEST_METHOD"] == 'POST')
     {

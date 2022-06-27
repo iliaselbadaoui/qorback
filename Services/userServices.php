@@ -39,7 +39,11 @@ class userServices
         $prepared = $this->connect->prepare("CALL create_user(?,?,?,?,?,?)");
         return $prepared->execute(array($name, $last, $address, $phone, $email, $password));
     }
-
+    public  function getUserById($id)
+    {
+        $prepared = $this->connect->prepare("CALL get_user_by_id(?)");
+        return $prepared->execute(array($id));
+    }
     public  function  getEmail($email)
     {
         $prepared = $this->connect->prepare("CALL get_email(?)");
