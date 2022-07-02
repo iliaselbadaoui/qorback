@@ -5,7 +5,7 @@ header('Access-Control-Allow-Origin: *');
 require '../vendor/autoload.php';
 
 error_reporting(E_ERROR);
-$youCanPay = YouCanPay::instance()->useKeys('pri_key', 'pub_key');
+$youCanPay = new \YouCan\Pay\YouCanPay(new \YouCan\Pay\API\HTTPAdapter\HTTPAdapterPicker());
 
 $transaction = $youCanPay->transaction->get("transaction-id");
 
