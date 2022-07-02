@@ -1,8 +1,14 @@
 <?php
+
 header('Access-Control-Allow-Origin: *');
-include_once "../__root__.php";
-include_once root."/Services/ycpServices.php";
+use YouCan\Pay\YouCanPay;
+require YouCanPay::class;
 
-$ycp = new ycpServices();
+error_reporting(E_ERROR);
+$youCanPay = YouCanPay::instance()->useKeys('pri_key', 'pub_key');
 
-echo $ycp->createToken();
+$transaction = $youCanPay->transaction->get("transaction-id");
+
+if (is_null($transaction)) {
+    echo "TRANSACTION NULL";
+}
