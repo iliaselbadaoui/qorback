@@ -1,6 +1,6 @@
 <?php
-//namespace YouCan\Pay;
-use YouCan\Pay\YouCanPay;
+namespace YouCan\Pay;
+use YouCan\Pay\YouCanPay as YouCanPay;
 
 $youCanPay = YouCanPay::instance()->useKeys('pri_key', 'pub_key');
 
