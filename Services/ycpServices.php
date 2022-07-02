@@ -1,4 +1,5 @@
 <?php
+namespace YouCan\Pay;
 use YouCan\Pay\YouCanPay;
 
 class ycpServices
