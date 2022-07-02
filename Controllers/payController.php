@@ -1,8 +1,7 @@
 <?php
 
-namespace YouCan\Pay;
-use YouCan\Pay\YouCanPay as YouCanPay;
 header('Access-Control-Allow-Origin: *');
+use YouCan\Pay\YouCanPay;
 
 error_reporting(E_ERROR);
 $youCanPay = YouCanPay::instance()->useKeys('pri_key', 'pub_key');
