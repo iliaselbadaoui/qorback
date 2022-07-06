@@ -79,7 +79,7 @@ else if ($_SERVER['REQUEST_METHOD'] == "GET")
     }
     else if ($operation == "user_posts")
     {
-        echo json_encode($ls->getUserListings($user));
         echo "HELLO";
+        echo json_encode($ls->getUserListings($user));
     }
 }
