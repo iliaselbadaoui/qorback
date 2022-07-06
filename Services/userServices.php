@@ -90,6 +90,6 @@ class userServices
     public function addBalance($user, $balance)
     {
         $prepared = $this->connect->prepare("CALL add_balance(?, ?)");
-        return $prepared->execute(array(user, $balance));
+        return $prepared->execute(array($user, $balance));
     }
 }
