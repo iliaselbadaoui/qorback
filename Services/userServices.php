@@ -86,4 +86,10 @@ class userServices
         $prepared = $this->connect->prepare("CALL update_user_solde(?)");
         return $prepared->execute(array($id));
     }
+
+    public function addBalance($user, $balance)
+    {
+        $prepared = $this->connect->prepare("CALL add_balance(?, ?)");
+        return $prepared->execute(array(user, $balance));
+    }
 }

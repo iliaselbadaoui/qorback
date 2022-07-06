@@ -44,4 +44,8 @@ include_once root."/Services/userServices.php";
         {
             echo json_encode($userServices->updateUser($id, $email, $phone));
         }
+        else if ($operation == "add_balance")
+        {
+            echo json_encode($userServices->addBalance($user, $balance));
+        }
     }
