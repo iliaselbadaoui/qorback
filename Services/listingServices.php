@@ -58,9 +58,9 @@ class listingServices
         return $newData;
     }
 
-    public function getUserTickets($user)
+    public function getUserTickets($id)
     {
-        $prepared = $this->connect->query("CALL `get_user_participations('".$user."')");
+        $prepared = $this->connect->query("CALL `get_user_participations($id)");
         $rawData = $prepared->fetchAll(PDO::FETCH_ASSOC);
         $newData = array();
         foreach ($rawData as $reg)
