@@ -77,6 +77,10 @@ else if ($_SERVER['REQUEST_METHOD'] == "GET")
     {
         echo json_encode($ls->getAllListings());
     }
+    else if( $operation == 'user_tickets')
+    {
+        echo json_encode($ls->getUserTickets($user));
+    }
     else if ($operation == "user_posts")
     {
         echo json_encode($ls->getUserListings($user));

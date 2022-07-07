@@ -58,6 +58,26 @@ class listingServices
         return $newData;
     }
 
+    public function getUserTickets($user)
+    {
+        $prepared = $this->connect->query("CALL `get_user_participations(?)");
+        $prepared->execute(array(user));
+        $rawData = $prepared->fetchAll(PDO::FETCH_ASSOC);
+        $newData = array();
+        foreach ($rawData as $reg)
+        {
+            $reg['pic1'] = "data:".$reg['pic1type'].";base64,".base64_encode(stripslashes($reg['pic1']));
+            $reg['pic2'] = "data:".$reg['pic2type'].";base64,".base64_encode(stripslashes($reg['pic2']));
+            $reg['pic3'] = "data:".$reg['pic3type'].";base64,".base64_encode(stripslashes($reg['pic3']));
+            $reg['pic4'] = "data:".$reg['pic4type'].";base64,".base64_encode(stripslashes($reg['pic4']));
+            $userpic = "data:".$reg['mimetype'].";base64,".base64_encode(stripslashes($reg['photo']));
+            array_push($newData, array('listingID'=>$reg['id'],'userID'=>$reg['userID'],'tickets'=>$reg['ticks'],'userFullName'=>$reg['name'].' '.$reg['last'],'userPhoto'=>$userpic,'title'=>$reg['title'],'desc'=>$reg['description'],
+                'price'=>$reg['targetPrice'], 'collected'=>$reg['collectedFunds'], 'expires'=>$reg['dateEnd'],
+                'pic1'=>$reg['pic1'], 'pic2'=>$reg['pic2'], 'pic3'=>$reg['pic3'], 'pic4'=>$reg['pic4']));
+        }
+        return $newData;
+    }
+
     public function getUserListings($id)
     {
         $prepared = $this->connect->prepare("CALL get_user_listings(?)");
