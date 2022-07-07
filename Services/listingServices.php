@@ -61,10 +61,8 @@ class listingServices
     public function getUserTickets($id)
     {
         $prepared = $this->connect->query("CALL get_user_participations($id)");
-//        $prepared->execute($id);
         $rawData = $prepared->fetchAll(PDO::FETCH_ASSOC);
         $newData = array();
-        echo count($rawData);
         foreach ($rawData as $reg)
         {
             $reg['pic1'] = "data:".$reg['pic1type'].";base64,".base64_encode(stripslashes($reg['pic1']));
