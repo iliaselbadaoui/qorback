@@ -70,7 +70,7 @@ class listingServices
             $reg['pic3'] = "data:".$reg['pic3type'].";base64,".base64_encode(stripslashes($reg['pic3']));
             $reg['pic4'] = "data:".$reg['pic4type'].";base64,".base64_encode(stripslashes($reg['pic4']));
             $userpic = "data:".$reg['mimetype'].";base64,".base64_encode(stripslashes($reg['photo']));
-            array_push($newData, array('listingID'=>$reg['id'],'userID'=>$reg['userID'],'tickets'=>$reg['ticks'],'userFullName'=>$reg['name'].' '.$reg['last'],'userPhoto'=>$userpic,'title'=>$reg['title'],'desc'=>$reg['description'],
+            array_push($newData, array('listingID'=>$reg['id'],'userID'=>$reg['userID'],'total'=>$reg['collectedFunds'],'tickets'=>$reg['ticks'],'userFullName'=>$reg['name'].' '.$reg['last'],'userPhoto'=>$userpic,'title'=>$reg['title'],'desc'=>$reg['description'],
                 'price'=>$reg['targetPrice'], 'collected'=>$reg['collectedFunds'], 'expires'=>$reg['dateEnd'],
                 'pic1'=>$reg['pic1'], 'pic2'=>$reg['pic2'], 'pic3'=>$reg['pic3'], 'pic4'=>$reg['pic4']));
         }
