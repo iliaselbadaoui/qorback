@@ -86,7 +86,7 @@ class listingServices
         foreach ($rows as $row)
         {
             $miniature = "data:".$row['type'].";base64,".base64_encode(stripslashes($row['miniature']));
-            array_push($newData, array("id"=> $row["id"],'funds'=>$row['collected'], "title"=>$row['title'], "miniature"=>$miniature));
+            array_push($newData, array("id"=> $row["id"],'expires'=>$row['expires'],'funds'=>$row['collected'], "title"=>$row['title'], "miniature"=>$miniature));
         }
         return $newData;
     }
