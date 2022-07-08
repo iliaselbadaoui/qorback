@@ -85,4 +85,8 @@ else if ($_SERVER['REQUEST_METHOD'] == "GET")
     {
         echo json_encode($ls->getUserListings($user));
     }
+    else if ($operation == "participants")
+    {
+        echo json_encode($ls->getParticipants($listing));
+    }
 }
