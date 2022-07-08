@@ -97,4 +97,11 @@ class listingServices
         return $prepared->execute(array($user, $listing));
     }
 
+    public function getParticipants($listing)
+    {
+        $prepared = $this->connect->prepare("CALL get_participants(?)");
+        $prepared->execute(array($listing));
+        return $prepared->fetchAll(PDO::FETCH_ASSOC);
+    }
+
 }
